@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: zayander24/demo-app:latest  # Update with your Docker Hub username
+          ports:
+            - containerPort: 8080  # Adjust if your app uses a different port
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "prod"  # If you have different profiles in your Spring Boot app
